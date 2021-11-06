@@ -5,11 +5,11 @@ import Link from 'next/link'
 const search = () => {
   return (
     <Wrapper>
-      <Link href="/">
-        <ButtonContainer>
-          <BackButton src="https://img.icons8.com/ios-filled/50/000000/left.png" />
-        </ButtonContainer>
-      </Link>
+      <ButtonContainer>
+        <Link href="/">
+          <BackButton id='back' src="https://img.icons8.com/ios-filled/50/000000/left.png" />
+        </Link>
+      </ButtonContainer>
       <InputContainer>
         <FromToIcons>
           <Circle src="https://img.icons8.com/ios-filled/50/9CA3AF/filled-circle.png" />
@@ -26,23 +26,20 @@ const search = () => {
         <StarIcon src="https://img.icons8.com/ios-filled/50/ffffff/star--v1.png" />
         Save Places
       </SavedPlaces>
-      <ConfirmLocations>
-        <ConfirmLocationsButton>
-          Confirm Locations
-        </ConfirmLocationsButton>
-      </ConfirmLocations>
+      <ConfirmButtonContainer>
+        Confirm Locations
+      </ConfirmButtonContainer>
     </Wrapper>
   )
 }
 
 export default search
 
+const ButtonContainer = tw.div`
+  bg-white px-4 cursor-pointer
+`
 const Wrapper = tw.div`
   bg-gray-200 h-screen
-`
-
-const ButtonContainer = tw.div`
-  bg-white px-4 hover:{cursor:pointer}
 `
 
 const BackButton = tw.img`
@@ -85,14 +82,10 @@ const SavedPlaces = tw.div`
   flex items-center bg-white px-4 py-2
 `
 
-const StarIcon =tw.img`
+const StarIcon = tw.img`
   bg-gray-400 w-10 h-10 p-2 rounded-full mr-2
 `
 
-const ConfirmLocations = tw.div`
-  flex
-`
-
-const ConfirmLocationsButton = tw.button`
-  bg-black text-xl text-white flex-1 items-center m-4 p-2
+const ConfirmButtonContainer = tw.div`
+  bg-black text-xl text-white text-center mt-2 mx-4 px-4 py-3 text-2xl cursor-pointer
 `
