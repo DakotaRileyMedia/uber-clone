@@ -12,8 +12,8 @@ const Confirm = () => {
   console.log("Pickup", pickup)
   console.log("Dropoff", dropoff)
 
-  const [ pickupCoordinates, setPickupCoordinates ] = useState()
-  const [ dropoffCoordinates, setDropoffCoordinates ] = useState()
+  const [ pickupCoordinates, setPickupCoordinates ] = useState([0,0])
+  const [ dropoffCoordinates, setDropoffCoordinates ] = useState([0,0])
 
   const getPickupCoordinates = (pickup)=> {
     fetch (`https://api.mapbox.com/geocoding/v5/mapbox.places/${pickup}.json?` +
@@ -53,7 +53,7 @@ const Confirm = () => {
     <Wrapper>
       <ButtonContainer>
         <Link href="/search">
-          <BackButton id='back' src="https://img.icons8.com/ios-filled/50/000000/left.png" />
+          <BackButton id='back' src="https://lh3.googleusercontent.com/PhojwMaaroZ9bg20mbgRjQTNu3IVHGb_D1nfY4oy7-X-CpfcYojd_upozJz-Gz71LxpBaQFqqsORthofn4CNucDFIr5e08CUBZ6M758DUpxFBKDGaAqnOs299sWXumgznHUjqz1N_jmXh_I8zC4YyYKsbGPMA6YlYenGiLMuC_v4VmJndd3Bxty95By5S275Hu2kQMHdQl9N5HeNKimDiTXoVPAxoBcdDXza66cyU0N4xMkQLPsZM3fFYBoUHCsRPjAjwU-3Gg1rjY3o6L0SYI19CuN4zl178BDaSkAfeYyICcG4OQLrINRArv3hJdDx27SOEb8B7S_XwOX2YJR8iNd9JjtwfiDYWy_81cWONg5uDGvakf9PUF32rpaXupba-fDfVvCjQ5ncmfcfJReN-xgrqexx_Ogi8EJdHXzqpkvS9cE94i4U1OrYlyoeZ_haGPqR4CYNksGJQIQ997MUwO7MM9Bey2dQzMwx9bWZDtvjFFyLk4OCkFvPBKdMZfRWCMsGE9Vlsgp5zW7h3eBJ8s75HBquBht5HnYcRDHicO84r4Mqda-mFVzVVkDM33ajXf-ok2_htKpNwf4rjf9nSlAS96r5OXlYL53GEba-ScE_brH_-gpUIVWrOztIvAUk9dN75lJh1PF0yCG5rYTRAlAcDpFjQdcSEPMaOfcCX3QTWjo9CQ6Ow8lMQ8LhDMOVVNy-dEX7GNoA2I6ZArGlt_iLYQ=s50-no?authuser=0" />
         </Link>
       </ButtonContainer>
       <Map
@@ -61,7 +61,10 @@ const Confirm = () => {
         dropoffCoordinates={dropoffCoordinates}
       />
       <RideContainer>
-        <RideSelector />
+        <RideSelector 
+          pickupCoordinates={pickupCoordinates}
+          dropoffCoordinates={dropoffCoordinates}
+        />
         <ConfirmButtonContainer>
           <ConfirmButton>
             Confirm Uber X
@@ -75,7 +78,7 @@ const Confirm = () => {
 export default Confirm
 
 const ButtonContainer = tw.div`
-  bg-white cursor-pointer rounded-full fixed top-4 left-4 z-50
+  bg-gray-800 cursor-pointer rounded-full fixed top-4 left-4 z-50
 `
 
 const BackButton = tw.img`
@@ -83,7 +86,7 @@ const BackButton = tw.img`
 `
 
 const ConfirmButton = tw.div`
-  bg-black text-white my-4 mx-4 py-4 text-center text-xl
+  bg-gray-800 text-white my-4 mx-4 py-4 text-center text-xl rounded-lg
 `
 
 const ConfirmButtonContainer = tw.div`
@@ -91,7 +94,7 @@ const ConfirmButtonContainer = tw.div`
 `
 
 const Wrapper = tw.div`
-  flex h-screen flex-col
+  flex h-screen flex-col bg-gray-900
 `
 
 const RideContainer = tw.div`

@@ -9,4 +9,4 @@
 9. Use the passed in data to put it on the map. ✅
 10. Create the HTML for the Ride Selector. ✅
 11. Calculate the price of the Uber.
-12. Add login.
+12. Add login. ✅

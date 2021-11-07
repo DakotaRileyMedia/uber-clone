@@ -1,8 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import tw from "tailwind-styled-components"
 import { carList } from '../../data/carList'
 
-const RideSelector = () => {
+const RideSelector = ({pickupCoordinates,dropoffCoordinates}) => {
+  const [rideDuration, setRideDuration] = useState(0)
+
+  // Get ride duration from MAPBOX API
+  // 1. pickupCoordinates
+  // 2. dropoffCoordinates
+  // Template Literal
+
+  useEffect(() => {
+    console.log(pickupCoordinates);
+    console.log(dropoffCoordinates);
+    rideDuration = fetch(`https://api.mapbox.com/directions/v5/mapbox/driving/${pickupCoordinates[0]},${pickupCoordinates[1]};${dropoffCoordinates[0]},${dropoffCoordinates[1]}?access_token=pk.eyJ1IjoiZHJpbGV5OTciLCJhIjoiY2t2bHV1ZmR0OWZubjJ2cGd1bzFzcDE5ZSJ9.a_4a7NFyERf8XJxTGiKZsw`).then(res => res.json()).then( data => {
+      console.log(data)
+      if (data.routes.length > 0) {
+        setRideDuration(data.routes[0].duration / 100);
+      } else{
+        setRideDuration(0);
+      }
+    })
+  },[pickupCoordinates, dropoffCoordinates])
 
   return (
     <Wrapper>
@@ -15,7 +34,7 @@ const RideSelector = () => {
             <Service>{car.service}</Service>
             <Time>5 minutes away</Time>
           </CarDetails>
-          <Price>$24.00</Price>
+          <Price>{'$' + (rideDuration * car.multiplier).toFixed(2)}</Price>
         </Car>
         )) }
       </CarList>
@@ -30,7 +49,7 @@ const Wrapper = tw.div`
 `
 
 const Title = tw.div`
-  text-gray-500 text-center text-xsm py-2 border-b
+  text-gray-400 text-center text-xsm py-2 border-b
 `
 
 const CarList = tw.div`
@@ -38,7 +57,7 @@ const CarList = tw.div`
 `
 
 const Car = tw.div`
-  flex p-4 items-center
+  flex p-4 items-center text-white
 `
 
 const CarImage = tw.img`
