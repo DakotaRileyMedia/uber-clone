@@ -30,7 +30,7 @@ const Login = () => {
 export default Login
 
 const Wrapper = tw.div`
-  flex flex-col h-screen w-screen bg-gray-900 p-4
+  flex flex-col bg-gray-900 h-auto w-screen p-4
 `
 
 const UberLogo = tw.img`
@@ -46,5 +46,5 @@ const HeadImage = tw.img`
 `
 
 const SignInButton = tw.button`
-  bg-black text-white text-center py-4 mt-8 self-center cursor-pointer w-full
+  bg-gray-800 text-white text-center py-4 mt-8 self-center cursor-pointer w-full
 `
