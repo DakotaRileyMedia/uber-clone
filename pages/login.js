@@ -30,7 +30,7 @@ const Login = () => {
 export default Login
 
 const Wrapper = tw.div`
-  flex flex-col bg-gray-900 h-auto w-screen p-4
+  flex flex-col bg-gray-900 h-screen w-screen p-4
 `
 
 const UberLogo = tw.img`

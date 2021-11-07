@@ -20,7 +20,7 @@ useEffect(() => {
     if (user) {
       setUser({
         name: user.displayName,
-        photoUrl: user.photoUrl,
+        photoUrl: user.photoURL,
       })
     } else {
       setUser(null)
